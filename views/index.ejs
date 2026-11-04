@@ -1,0 +1,39 @@
+<%- include('./header') %>
+
+    <main>
+        <div class="search-box">
+            <input type="text" id="search-input" placeholder="Pesquisar por marca ou modelo (ex: SUV, Sedan)...">
+        </div>
+
+        <section class="vehicle-grid">
+            <article class="vehicle-card">
+                <img src="https://via.placeholder.com/300x180" alt="Foto do Veículo">
+                <div class="vehicle-info">
+                    <h3>Toyota Corolla</h3>
+                    <p>Ano: 2023</p>
+                    <p class="price">R$ 180,00 / dia</p>
+                    <p>Avaliação: &#9733;&#9733;&#9733;&#9733;&#9734; (4.0)</p>
+                </div>
+                <div class="card-actions">
+                    <button class="btn-fav" onclick="toggleFavorito(this)">&#9825;</button>
+                    <a href="/agendamento?veiculo=1" class="btn-primary">Alugar</a>
+                </div>
+            </article>
+
+            <article class="vehicle-card">
+                <img src="https://via.placeholder.com/300x180" alt="Foto do Veículo">
+                <div class="vehicle-info">
+                    <h3>Jeep Compass</h3>
+                    <p>Ano: 2024</p>
+                    <p class="price">R$ 250,00 / dia</p>
+                    <p>Avaliação: &#9733;&#9733;&#9733;&#9733;&#9733; (5.0)</p>
+                </div>
+                <div class="card-actions">
+                    <button class="btn-fav" onclick="toggleFavorito(this)">&#9825;</button>
+                    <a href="/agendamento?veiculo=2" class="btn-primary">Alugar</a>
+                </div>
+            </article>
+        </section>
+    </main>
+
+    <%- include('./footer') %>

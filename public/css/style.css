@@ -1,0 +1,207 @@
+/* Variáveis para temas e acessibilidade */
+:root {
+    --bg-color: #f4f6f9;
+    --card-bg: #ffffff;
+    --text-color: #2c3e50;
+    --primary-color: #0056b3;
+    --accent-color: #e67e22;
+    --border-color: #cccccc;
+    --font-scale: 16px;
+}
+
+/* Modo Escuro */
+body.dark-mode {
+    --bg-color: #121212;
+    --card-bg: #1e1e1e;
+    --text-color: #f1f1f1;
+    --primary-color: #375a7f;
+    --accent-color: #f39c12;
+    --border-color: #444444;
+}
+
+/* Modo Daltônico (Alto Contraste) */
+body.daltonico-mode {
+    --bg-color: #000000;
+    --card-bg: #111111;
+    --text-color: #ffff00;
+    --primary-color: #00ffff;
+    --accent-color: #ff00ff;
+    --border-color: #ffffff;
+}
+
+html {
+    font-size: var(--font-scale);
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Cabeçalho e Acessibilidade */
+header {
+    background-color: var(--card-bg);
+    border-bottom: 2px solid var(--border-color);
+    padding: 1rem 2rem;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+}
+
+.accessibility-bar {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.accessibility-bar button {
+    background-color: var(--primary-color);
+    color: #fff;
+    border: none;
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+nav a {
+    color: var(--text-color);
+    text-decoration: none;
+    margin-left: 1rem;
+    font-weight: bold;
+}
+
+/* Layout Principal */
+main {
+    flex: 1;
+    max-width: 1200px;
+    margin: 2rem auto;
+    width: 90%;
+}
+
+/* Grid de Veículos */
+.search-box {
+    margin-bottom: 2rem;
+    display: flex;
+    gap: 1rem;
+}
+
+.search-box input {
+    flex: 1;
+    padding: 0.8rem;
+    font-size: 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    background-color: var(--card-bg);
+    color: var(--text-color);
+}
+
+.vehicle-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.vehicle-card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.vehicle-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.vehicle-info {
+    padding: 1rem;
+    flex: 1;
+}
+
+.vehicle-info .price {
+    font-size: 1.2rem;
+    color: var(--accent-color);
+    font-weight: bold;
+}
+
+.card-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.btn-fav {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #ccc;
+}
+
+.btn-fav.active {
+    color: #e74c3c;
+}
+
+/* Formulários */
+.form-container {
+    background-color: var(--card-bg);
+    padding: 2rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.form-group {
+    margin-bottom: 1.2rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.form-group input, .form-group select {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    box-sizing: border-box;
+}
+
+/* Rodapé */
+footer {
+    background-color: var(--card-bg);
+    border-top: 2px solid var(--border-color);
+    text-align: center;
+    padding: 1.5rem;
+    margin-top: auto;
+}
