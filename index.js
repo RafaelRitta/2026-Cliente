@@ -1,34 +1,33 @@
-const express = require('express');
-const path = require('path');
+import express from 'express';
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
+import './config/conexao.js'; // Garante a conexão com o MongoDB ao iniciar
+import routes from './routes/route.js';
+import veiculoRoutes from './routes/VeiculoRoutes.js';
+import aluguelRoutes from './routes/AluguelRoutes.js';
 
-const app = express();
 const PORT = 3000;
+const app = express();
 
-// Configura o motor de visualização para EJS
-app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'views'));
-
-// Configura a pasta de arquivos estáticos (CSS e JS)
-app.use(express.static(path.join(__dirname, 'public')));
-
-// Middleware para envio de formulários
 app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+app.set('view engine', 'ejs');
+
+// Caminho correto das views e public
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+// Servir arquivos estáticos e views
+app.use(express.static(join(__dirname, '/public')));
+app.set('views', join(__dirname, '/views'));
 
 // Rotas
-app.get('/', (req, res) => {
-    res.render('index', { title: 'Aluguel de Automóveis - Início' });
-});
+app.use(veiculoRoutes);
+app.use(aluguelRoutes);
+app.use(routes);
 
-app.get('/agendamento', (req, res) => {
-    res.render('agendamento', { title: 'Aluguel de Automóveis - Agendamento' });
-});
-
-app.get('/login', (req, res) => {
-    res.render('login', { title: 'Aluguel de Automóveis - Autenticação' });
-});
-
-// Inicialização do servidor
 app.listen(PORT, () => {
-    console.log(`Servidor rodando em: http://localhost:${PORT}`);
+    console.log(`Servidor rodando em http://localhost:${PORT}`);
 });
+
+// Exporta o handler compatível com Vercel
+export default app;

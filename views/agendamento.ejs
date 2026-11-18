@@ -3,12 +3,21 @@
     <main>
         <div class="form-container">
             <h2>Agendar Aluguel</h2>
-            <form action="#" method="POST">
+            <form action="/agendamento" method="POST">
                 <div class="form-group">
                     <label for="veiculo">Veículo Selecionado</label>
                     <select id="veiculo" name="veiculo" required>
-                        <option value="1">Toyota Corolla (R$ 180,00/dia)</option>
-                        <option value="2">Jeep Compass (R$ 250,00/dia)</option>
+                        <% if (veiculos && veiculos.length> 0) { %>
+                            <% veiculos.forEach(v=> { %>
+                                <option value="<%= v._id %>" data-preco="<%= v.precopordia %>"
+                                    <%=String(v._id)===String(veiculoSelecionado) ? 'selected' : '' %>>
+                                    <%= v.marca %>
+                                        <%= v.modelo %> (R$ <%= v.precopordia.toFixed(2).replace('.', ',' ) %>/dia)
+                                </option>
+                                <% }) %>
+                                    <% } else { %>
+                                        <option value="" disabled selected>Nenhum veículo disponível</option>
+                                        <% } %>
                     </select>
                 </div>
 
@@ -24,12 +33,29 @@
 
                 <div class="form-group">
                     <label for="valor">Valor Total Estimado (R$)</label>
-                    <input type="number" id="valor" name="valor" readonly value="180">
+                    <input type="number" id="valor" name="valor" readonly value="0">
                 </div>
 
                 <button type="submit" class="btn-primary" style="width: 100%;">Confirmar Agendamento</button>
             </form>
         </div>
     </main>
+
+    <script>
+        const selectVeiculo = document.getElementById('veiculo');
+        const inputDias = document.getElementById('dias');
+        const inputValor = document.getElementById('valor');
+
+        function atualizarValorTotal() {
+            const opcaoSelecionada = selectVeiculo.options[selectVeiculo.selectedIndex];
+            const precoPorDia = parseFloat(opcaoSelecionada?.dataset.preco || 0);
+            const dias = parseInt(inputDias.value || 1, 10);
+            inputValor.value = (precoPorDia * dias).toFixed(2);
+        }
+
+        selectVeiculo.addEventListener('change', atualizarValorTotal);
+        inputDias.addEventListener('input', atualizarValorTotal);
+        atualizarValorTotal();
+    </script>
 
     <%- include('./footer') %>
